@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Currency</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+                document.querySelector('form').onsubmit = function () {
+
+                    u = "https://api.apilayer.com/exchangerates_data/latest?base=USD&apikey=NMS6JstZOIjBg9xoYsSZOYmOw4WwxpTs&symbols=CAD,EUR,MEX,JPY&start_date=2023-10-01&end_date=2023-10-10"
+                    fetch(u)
+                    .then(response => response.json())
+                    .then(data => {
+                        var currency = document.querySelector("#currency").value;
+                        currency = currency.toUpperCase()
+                        console.log(currency)
+                        const rate = data.rates[currency];
+                        console.log(rate)
+                        let msg = ''
+                        if (rate !== undefined) {
+                            msg = `1 USD is equal to ${rate.toFixed(3)} ${currency}s`;
+                        } else {
+                            msg = 'Undefined currency'
+                        }
+                        document.querySelector('#result').innerHTML = msg;
+                    })
+                    .catch(error => console.log(`Error: ${error}`))
+    
+                    return false
+                }
+            })
+        </script>
+    </head>
+    <body>
+        <form>
+            <input id="currency" placeholder="Currency">
+            <input type="submit" value="CONVERT">
+        </form>
+        <div id="result"></div>
+    </body>
+</html>

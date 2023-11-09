@@ -3,11 +3,10 @@
     <head>
         <title>Counter</title>
         <script>
-            document.addEventListener('DOMContentLoaded',addButtonListener)
-
-            function addButtonListener() {
+            document.addEventListener('DOMContentLoaded', function() {
+                setInterval(count, 5000); 
                 document.querySelector('button').addEventListener('click', count)
-            }
+            })
 
             let counter = 0
             function count() {

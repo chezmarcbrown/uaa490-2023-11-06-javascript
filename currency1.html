@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Currency</title>
+        <script>
+
+            u = "https://api.apilayer.com/exchangerates_data/latest?base=USD&apikey=NMS6JstZOIjBg9xoYsSZOYmOw4WwxpTs&symbols=CAD,EUR,MEX,JPY&start_date=2023-10-01&end_date=2023-10-10"
+            fetch(u)
+            .then(response => response.json())
+            .then(data => {
+                const rate = data.rates.EUR;
+                const msg = `1 USD is equal to ${rate.toFixed(3)} EURs`;
+                document.querySelector('body').innerHTML = msg;
+            })
+
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
